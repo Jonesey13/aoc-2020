@@ -29,17 +29,9 @@ fn calculate_seat_id(seat_string: &str) -> usize {
 fn binary_partition(input: &str, on_char: char) -> usize {
     let binary_vec = input.chars()
     .rev()
-    .map(|c| 
-        {
-            if c == on_char {
-                true
-            } else {
-                false
-            }
-        }
-    );
+    .map(|c| c == on_char);
 
     binary_vec.enumerate()
-        .map(|(i, b)| 2u64.pow(i as u32) * (b as u64 ))
+        .map(|(i, b)| (b as u64 ) << i )
         .fold(0, |acc, val| acc + val) as usize
 }
